@@ -11,20 +11,25 @@ class UserController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'category' => 'required|string',
-            'name' => 'required|string',
-            'price' => 'required|numeric',
-            'size' => 'required|string',
-            'in_stock' => 'required|integer',
+            'category'  => 'required|string',
+            'name'      => 'required|string',
+            'price'     => 'required|numeric',
+            'size'      => 'required|string',
+            'in_stock'  => 'required|integer',
             'out_stock' => 'required|integer',
-            'barcode' => 'required|numeric',
+            'barcode'   => 'required|numeric',
         ]);
 
+        $products = Product::all();
+            foreach ($products as $product) {
+                if ($product->barcode == $request->input('barcode')) {
+                    return response()->json(['message' => 'Data already exists'], 409);
+                }
+            }
+        
         Product::create($validatedData);
-
         return response()->json(['message' => 'Data inserted successfully'], 201);
     }
-
 
     public function getData(Request $request)
 {
