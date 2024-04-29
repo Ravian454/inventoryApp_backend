@@ -17,5 +17,6 @@ class Product extends Model
         'in_stock',
         'out_stock',
         'barcode',
+        'image',
     ];
 }
