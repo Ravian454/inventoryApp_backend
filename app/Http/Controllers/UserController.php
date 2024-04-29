@@ -42,9 +42,9 @@ class UserController extends Controller
         Product::create($validatedData);
 
         return response()->json(['message' => 'Data inserted successfully'], 201);
-}
+    }
     public function getData(Request $request)
-{
+    {
     $products = Product::all(); 
     
     if ($products->isEmpty()) {
@@ -52,5 +52,5 @@ class UserController extends Controller
     }
 
     return response()->json(['products' => $products], 200);
-}
+    }
 }
