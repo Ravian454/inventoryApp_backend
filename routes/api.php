@@ -28,3 +28,10 @@ Route::middleware('api')->group(function () {
 Route::middleware('api')->group(function () {
     Route::get('/getData', [UserController::class, 'getData']);
 });
+
+Route::middleware('api')->group(function () {
+    Route::put('/update/{id}', [UserController::class, 'update']);
+    Route::delete('/deleteImage/{imageName}', [UserController::class, 'deleteImage']);
+});
+
+
